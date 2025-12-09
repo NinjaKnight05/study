@@ -64,13 +64,19 @@
 # print(my_list)
 
 # a=30
-# a-=10
-# print(a)
+# # a-=10
+# # print(a)
 
-is_citizen = True
-age = 11
+# is_citizen = True
+# age = 11
 
-if is_citizen and age >= 18:
-    print('You are eligible to vote') # You are eligible to vote
-else:
-    print('You are not eligible to vote')
+# if is_citizen and age >= 18:
+#     print('You are eligible to vote') # You are eligible to vote
+# else:
+#     print('You are not eligible to vote')
+
+# lower_chars = 'def'
+# upper_chars = 'ABC'
+
+# table = str.maketrans(lower_chars, upper_chars)
+# print(table) 
