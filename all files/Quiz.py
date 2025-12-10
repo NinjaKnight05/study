@@ -13,18 +13,18 @@ def user_input2(prompt):
  while True:
      try:
          pr=int(input(prompt))
-         if pr >=1 :
+         if pr >=0 :
              return pr
          else:
             print('enter number > 1!!!')
      except Exception as e:
        print('enter a valid nuumber')
-   
+
 while True:
  print('choose Option: .[c]reate Quiz .[l]ist Quiz .[p]lay Quizz .[u]pdate Quiz .[d]elete Quiz .[e]xit')
  choose=input('Here:')
-
  if choose=='c':
+     data2=[]
      question=user_input('write the Question:')
      print('---Give Options---')
      opt1=user_input('opt1:')
@@ -32,11 +32,12 @@ while True:
      opt3=user_input('opt3:')
      opt4=user_input('opt4:')
      answer=user_input2('Real/Correct answer: opt1 | opt2 | opt3 | opt4:')
-     data.append(question)
-     data.append(opt1)
-     data.append(opt2)
-     data.append(opt3)
-     data.append(opt4)
+     data2.append(question)
+     data2.append(opt1)
+     data2.append(opt2)
+     data2.append(opt3)
+     data2.append(opt4)
+     data.append(data2)
      if answer==1:
       ans.append(answer)
       print('Added Sucessfully')
@@ -51,7 +52,7 @@ while True:
       print('Added Sucessfully')
      else:
        print('Idiot!! --> Choose Between -->> 1|2|3|4 !!!!')
-     
+
  elif choose=='l':
        if len(data)==0:
          print('Nothing to See Here')
@@ -60,23 +61,34 @@ while True:
             print(i+1,j)
     
  elif choose=='u':
-   if not data:
+   if len(data)==None:
      print('Nothing To See Here')
-  #  else:
-     
-    
+   else:
+     indx=user_input2('Add the Question no. depends how many you added:')-1
+     if indx>len(data):
+        print('Wrong Input Try Again')
+     else:
+      indx2=user_input2('write 0 for question & 1-2-3-4 for options:')
+      if indx2>=5:
+        print('not valid try again')
+      else:
+       newitem=user_input('change question/option:')
+       data[indx].pop(indx2)
+       data[indx].insert(indx2,newitem)
+       print('Changed Sucessfully')
+
  elif choose=='p':
    if len(data)==None:
      print('Nothing To See Here')
    else:
      for i,j in enumerate(data[0:len(data)]):
-       print(question)
-       answer2=user_input2('Choose Between->>(1-4):')
-       if answer2 in ans:
-         print('correct')
+       print(j)
+       a=user_input2('choose 1-4:')
+       if a in ans:
+         print('Your Genious')
        else:
-         print('Wrong')
-     
+         print('Better Luck Next Time')
+         
  elif choose=='d':
    if not data:
      print('Nothing TO See Here')
@@ -89,7 +101,6 @@ while True:
  elif choose=='e':
      print('Have A Nice Day Sweety')
      break
- 
  else:
    print('invalid input')
 
