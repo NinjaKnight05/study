@@ -98,3 +98,15 @@
 #     print("inavlid ")
 
 #  dfgdfdgdgdfgdsggfgdfg
+
+# def patttern(n):
+#     for i in range(1,n):
+#         print(i)
+# patttern(4)
+
+
+l=[1,2,3,5,5]
+l.append(5)
+l.insert(3,4)
+b=set(l)
+print(b)
