@@ -1,6 +1,5 @@
 import streamlit as st
-import re
-
+from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title='My Site',page_icon='🗡️')
 
@@ -42,7 +41,13 @@ elif menu=='About':
    st.subheader('Some Bad points')
    st.write('Welcome to our platform! We are committed to providing the best experience for our users. Our team works hard to ensure quality, reliability, and fun. Explore our features, connect with others, and enjoy everything we have to offer.Welcome to our platform! We are committed to providing the best experience for our users. Our team works hard to ensure quality, reliability, and fun. Explore our features, connect with others, and enjoy everything we have to offer.Welcome to our platform! We are committed to providing the best experience for our users. Our team works hard to ensure quality, reliability, and fun. Explore our features, connect with others, and enjoy everything we have to offer.Welcome to our platform! We are committed to providing the best experience for our users. Our team works hard to ensure quality, reliability, and fun. ')
 else:
+   menu= option_menu(menu_title='', options=['Home','Contact','Blog','About'], icons=['house-fill','phone-fill','book-fill','info-square-fill'], orientation='horizontal')
+
    st.title('Welcome To Our Site')
    st.image('https://images.hdqwalls.com/wallpapers/cars-3-animated-movie-hd.jpg')
 
    
+
+
+
+

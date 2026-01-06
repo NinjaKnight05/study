@@ -46,7 +46,7 @@ while True:
       print('Added Scucesfully')
     #   print(data)
       for i,j in enumerate(data):
-          print(i+1,'Film:',j['name'],'Year:',j['year'],'Category:',j['genres'],'Duration:',j['duration'])
+          print(i+1,'Film:',j['name'],', Year:',j['year'],', Category:',j['genres'],', Duration:',j['duration'])
       
 
   elif select=='l':
@@ -57,20 +57,26 @@ while True:
            print(i+1,'Movie:',j['name'],',','Release:',j['year'])
 
   elif select=='s':
+    for i,j in enumerate(data):
       if len(data)==0:                      
           print('no movies')
       else:
-          search=input('search movies:')
-        #   for i,j in enumerate(data):
-         
-        
+          search=input_something('search movies:')
+          if search in (data[i]['name']):
+              print('Movie Founded')
+              print(('movie name..'),data[i]['name'])
+              print(('realease year'),data[i]['year'])
+          else:
+              search not in (data[i]['name'])
+              print('No Movies Found ')
+                
   elif select=='v':
       if len(data)==0:
           print('no movies')
       else:
           indx=input_int('enter the index:')
           for i,j in enumerate(data):
-              if indx>len(data) and indx<=0:
+              if indx>i+1 and indx<=0:
                   print('invalid index')
               else:
                  if indx==i+1:
