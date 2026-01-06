@@ -30,8 +30,6 @@ with col1:
     ch2=px.pie(names=df.Education_Level.value_counts().index,values=df.Education_Level.value_counts().values)
     st.plotly_chart(ch2)
 
-
- 
 with col2:
     total=df['Job_Title'].value_counts()
     total

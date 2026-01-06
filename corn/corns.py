@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import plotly.graph_objects as pc
 import matplotlib.pyplot as plt
 from streamlit_option_menu import option_menu
 import base64 
@@ -25,34 +26,63 @@ if menu=="Home":
           st.image("https://c.files.bbci.co.uk/910A/production/_106203173_farmer1.jpg")
 
 elif menu=='Analysis':
-     with open('lst.jpg','rb') as f:
-      file=f.read()
-      img= base64.b64encode(file).decode()
-     css=f"""
-          <style>
-           [data-testid="stAppViewContainer"]{{
-            background-image:url('data:image/jpg;base64,{img}');
-            background-size:cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }}
-        </style>
-       """
-     st.markdown(css, unsafe_allow_html=True)
+     # with open('lst.jpg','rb') as f:
+     #  file=f.read()
+     #  img= base64.b64encode(file).decode()
+     # css=f"""
+     #      <style>
+     #       [data-testid="stAppViewContainer"]{{
+     #        background-image:url('data:image/jpg;base64,{img}');
+     #        background-size:cover;
+     #        background-position: center;
+     #        background-repeat: no-repeat;
+     #    }}
+     #    </style>
+     #   """
+     # st.markdown(css, unsafe_allow_html=True)
      st.title('ALL STATES 2026 CROPS SALES🌾')
      st.subheader('Analysis🧠')
-     df=pd.read_csv('market.csv')
+     df=pd.read_csv('corn.csv')
+     df.columns=df.columns.str.strip()
 
      st.write(df)
-     # res_index=df.loc[:,"Restaurant Name"].value_counts().index
-     # st.write(res_index)
+     # show=df["Commodity Group"].unique()
+     # st.write(show)
+     res_index=df.loc[:,"Commodity Group"].value_counts().index
 
-     # with st.sidebar:
-     #  selected_res=st.selectbox(label='Select Restaurant',options=res_index)
-     #  df_selected=df[df.loc[:,'Restaurant Name']==selected_res]
-     #  df_selected=df_selected.sort_values(by='Votes',ascending=False)
-     #  st.write(df_selected)
-elif menu=='contact':
-    pass
+     with st.sidebar:
+       selected_res = st.selectbox('Select', options=df['Commodity Group'].unique())
+       df_selected = df[df['Commodity Group'] == selected_res]
+
+     chart0=px.pie(df,names='Commodity',values='Quantity')
+     st.plotly_chart(chart0)
+     st.write(df_selected)
+     # st.write(df_selected1)
+     
+
+     chart1=px.scatter_3d(df_selected,x='Commodity',y='Quantity',z='Commodity Group',color="Commodity")
+     st.plotly_chart(chart1)
+
+     chart2=px.bar(df_selected,x="Commodity",y="Price 0",color='Arrived Material 1')
+     st.plotly_chart(chart2)
+
+     chart4=px.bar(df_selected,x="Commodity",y="Price 1",color="Arrival Material 2")
+     st.plotly_chart(chart4)
+
+     chart5=px.bar(df_selected,x='Commodity',y='Price 2',color="Arrival Material 3" )
+     st.plotly_chart(chart5)
+     
+     chart3=px.line(df_selected,x="Commodity",y="Total Arrival")
+     st.plotly_chart(chart3)
+
+     chart6=px.funnel(df_selected,x='Commodity Group',y='Quantity',color="Commodity")
+     st.plotly_chart(chart6)
+
+     
+
+
+
+# elif menu=='contact':
+#     pass
 
 
