@@ -66,6 +66,7 @@ while True:
               print('Movie Founded')
               print(('movie name..'),data[i]['name'])
               print(('realease year'),data[i]['year'])
+              break
           else:
               search not in (data[i]['name'])
               print('No Movies Found ')
