@@ -24,21 +24,6 @@ if menu=='Home':
         height=400,
      )
     st.write('Lorem Ipsm is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.')
-
-      # with open('lst.jpg','rb') as f:
-     #  file=f.read()
-     #  img= base64.b64encode(file).decode()
-     # css=f"""
-     #      <style>
-     #       [data-testid="stAppViewContainer"]{{
-     #        background-image:url('data:image/jpg;base64,{img}');
-     #        background-size:cover;
-     #        background-position: center;
-     #        background-repeat: no-repeat;
-     #    }}
-     #    </style>
-     #   """
-     # st.markdown(css, unsafe_allow_html=True
     st.title('-------------About Farmers--------------')
     col1,col2=st.columns(2)
     with col1:
@@ -58,6 +43,12 @@ if menu=='Home':
        
        st.subheader('')
        st.image('https://tse4.mm.bing.net/th/id/OIP.bG8LtZ9zce2tUXH9PAJqRgHaFi?rs=1&pid=ImgDetMain&o=7&rm=3')
+
+       st.subheader('')
+       st.write('Nutritional Powerhouse: Black sesame seeds are rich in calcium, iron, magnesium, zinc, and copper, which are crucial for bone health and immune support. Heart Health: The healthy fats in black sesame seeds, including monounsaturated and polyunsaturated fats, can help reduce LDL cholesterol levels and lower the risk of heart disease and stroke. Antioxidant Properties: These seeds contain antioxidants like sesamin, sesamol, and lignans, which protect cells from oxidative damage and reduce the risk of chronic diseases')
+
+       st.subheader('')
+       st.image('https://i0.wp.com/herbaria3.org/wp-content/uploads/2021/03/iiif-service_asian_lcnclscd_2014514379_1A001_05b06a-3390x490x2997x3735-866x-0-default.jpg?w=866&ssl=1')
       
     with col2:
        st.title('')
@@ -65,10 +56,56 @@ if menu=='Home':
        
        st.subheader('')
        st.subheader('Corn')
-       st.write('Maize (/meɪz/; Zea mays), also known as corn in North American English, is a tall stout grass that produces cereal grain. The leafy stalk of the plant gives rise to male inflorescences or tassels which produce pollen, and female inflorescences called ears. ')
+       st.write('Maize (/meɪz/; Zea mays), also known as corn in North American English, is a tall stout grass that produces cereal grain. The leafy stalk of the plant gives rise to male inflorescences or tassels which produce pollen, and female inflorescences called ears')
 
+       st.title('')
+       st.subheader('Black Sesame Seeds')
+       st.image('https://tse4.mm.bing.net/th/id/OIP.83ivqHWarTmNe0juipvlEQHaFo?w=800&h=608&rs=1&pid=ImgDetMain&o=7&rm=3')
+
+       st.write('')
+       st.subheader('Rice')
+       st.write('Staple Food: Rice is a primary food source for more than 3.5 billion people, especially in Asia, where it forms the basis of many traditional dishes. It provides essential carbohydrates and energy. Nutritional Value: Brown rice is more nutritious than white rice, retaining its bran and germ, which provide fiber, vitamins, and minerals. Rice is naturally gluten-free, making it suitable for those with gluten intolerance.')
+
+    
+    st.title('History') 
+    st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/KITLV_40091_-_Kassian_C%C3%A9phas_-_Relief_of_the_hidden_base_of_Borobudur_-_1890-1891.jpg/600px-KITLV_40091_-_Kassian_C%C3%A9phas_-_Relief_of_the_hidden_base_of_Borobudur_-_1890-1891.jpg')
+
+    
+    col3,col4=st.columns(2)
+    with col3:
+       st.write('')
+       st.write('Agriculture began independently in different parts of the globe, and included a diverse range of taxa. At least eleven separate regions of the Old and New World were involved as independent centers of origin. The development of agriculture about 12,000 years ago changed the way humans lived. They switched from nomadic hunter-gatherer lifestyles to permanent settlements and farming Wild grains were collected and eaten from at least 104,000 years ago. However, domestication did not occur until much later. The earliest evidence of small-scale cultivation of edible grasses is from around 21,000 BC with the Ohalo II people on the shores of the Sea of Galilee. By around 9500 BC, the eight Neolithic founder crops – emmer wheat, einkorn wheat, hulled barley, peas, lentils, bitter vetch, chickpeas, and flax – were cultivated in the Levant.[4] Rye may have been cultivated earlier, but this claim remains controversial.')
+
+    with col4:
+       st.title('')
+       st.image('https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Maler_der_Grabkammer_des_Sennudem_001.jpg/960px-Maler_der_Grabkammer_des_Sennudem_001.jpg')
+
+    st.markdown(
+    """
+    <style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #0e1117;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        z-index: 100;
+    }
+    </style>
+
+    <div class="footer">
+        © 2026 Coder Roots | Built with Tobi
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 elif menu=='Analysis':
+     
      st.title('ALL STATES 2026 CROPS SALES🌾')
      st.subheader('Analysis🧠')
      df=pd.read_csv('corn.csv')
@@ -109,6 +146,22 @@ elif menu=='Analysis':
      st.subheader('New Arrived Material')
      chart3=px.line(df_selected,x="Commodity",y="Total Arrival")
      st.plotly_chart(chart3)
+
+     
+     with open('lst.jpg','rb') as f:
+      file=f.read()
+      img= base64.b64encode(file).decode()
+     css=f"""
+          <style>
+           [data-testid="stAppViewContainer"]{{
+            background-image:url('data:image/jpg;base64,{img}');
+            background-size:cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }}
+        </style>
+       """
+     st.markdown(css, unsafe_allow_html=True)
 
 elif menu=='Contact':
     with st.form(key='contact'):
