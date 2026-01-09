@@ -1,4 +1,2 @@
 
-#     process_data('abc')
-# except ValueError:
-#     print('Handled at higher level')
+          for i,j in enumerate (data) :

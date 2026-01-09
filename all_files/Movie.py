@@ -46,33 +46,33 @@ while True:
       print('Added Scucesfully')
     #   print(data)
       for i,j in enumerate(data):
-          print(i+1,'Film:',j['name'],', Year:',j['year'],', Category:',j['genres'],', Duration:',j['duration'])
+          print(f'{i+1},Film:',j['name'],', Year:',j['year'],', Category:',j['genres'],', Duration:',j['duration'])
       
 
   elif select=='l':
-       if len(data)==0:
+       if not data:
           print('no movies')
        else:
           for i,j in enumerate (data) :
-           print(i+1,'Movie:',j['name'],',','Release:',j['year'])
+           print(f'{i+1},Movie:',j['name'],',','Release:',j['year'])
 
-  elif select=='s':
-    for i,j in enumerate(data):
-      if len(data)==0:                      
-          print('no movies')
-      else:
-          search=input_something('search movies:')
-          if search in (data[i]['name']):
-              print('Movie Founded')
-              print(('movie name..'),data[i]['name'])
-              print(('realease year'),data[i]['year'])
-              break
-          else:
-              search not in (data[i]['name'])
-              print('No Movies Found ')
+  elif select == 's':
+    if not data:
+        print('no movies')
+    else:
+        search = input_something('search movie name: ').lower()
+        found = False
+
+        for m in data:
+            if search in m['name'].lower():
+                print(f"Found: {m['name']} ({m['year']})")
+                found = True
+
+        if not found:
+            print('No Movies Found')
                 
   elif select=='v':
-      if len(data)==0:
+      if not data:
           print('no movies')
       else:
           indx=input_int('enter the index:')
@@ -84,7 +84,7 @@ while True:
                   print(j)
 
   elif select=='d':
-        if len(data)==0:
+        if not data:
             print('no movies')
         else:
             p=input_int('enter index number:')
