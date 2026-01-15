@@ -1,4 +1,3 @@
-print('---------------To-do-List-----------------')
 data=[]
 ans=[]
 def user_input(prompt):
@@ -10,7 +9,6 @@ def user_input(prompt):
    print('enter valid value !!')
 
 def user_input2(prompt):
- while True:
      try:
          pr=int(input(prompt))
          if pr >=0 :

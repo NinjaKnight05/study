@@ -1,6 +1,4 @@
-# data={'movie':'anurag','year':4564}
-
-
+# data={'movie':'anurag','year':4564
 
 # if len(data)==0:
 #     print('no movies')
