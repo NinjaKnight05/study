@@ -90,5 +90,11 @@
 # j=int(j)
 # print(type(j))
 
-for i in range(10,1,-1):  # stop-1 =1-(-1) = 2
-    print(i)
+# for i in range(10,1,-1):  # stop-1 =1-(-1) = 2
+#     print(i)
+
+dict1={"name":"alice",'class':'ba'}
+
+for i, j in enumerate(dict1.items()):
+    # print(i,j)
+    print(len(j[1]))
