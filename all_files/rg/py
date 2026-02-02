@@ -1,0 +1,6 @@
+import re
+exp="[5-9]{1}\d{9}"
+show='number = 9874563219 other num 5123456789 '
+# print(re.search)search only one
+print(re.findall(pattern=exp,string=show))
+
