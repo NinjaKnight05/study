@@ -1,86 +1,83 @@
 import streamlit as st
 import joblib
-import sklearn
-from streamlit_option_menu import option_menu
-import base64
-import plotly.express as px
 import pickle
-import streamlit.components.v1 as components
+from streamlit_option_menu import option_menu
 
-st.set_page_config(page_title='CarPredictor',page_icon='🏎️')
+st.set_page_config(page_title='CarPredictor', page_icon='🏎️')
 
-menu = option_menu(menu_title='',options=['Home','Prediction','Analysis'],icons=['list-ul','bar-chart-fill','graph-up-arrow'],orientation='horizontal')
-
-model = joblib.load('car_model.joblib')
-fuelmod=pickle.load(open('fuel.pkl','rb'))
-ownmod = pickle.load(open('own.pkl','rb'))
-transmod = pickle.load(open('trans.pkl','rb'))
-
-
-
-if menu=='Home':
-   st.title('𝗩𝗘𝗛𝗜𝗖𝗟𝗘 𝗣𝗥𝗜𝗖𝗘 𝗘𝗦𝗧𝗜𝗠𝗔𝗧𝗢𝗥')
-   st.image('https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg?cs=srgb&dl=pexels-tdcat-70912.jpg&fm=jpg')
-
-   st.subheader(
-    "Get an instant, machine-learning–based estimate of your car’s resale value."
+menu = option_menu(
+    menu_title='',
+    options=['Home', 'Prediction', 'Analysis'],
+    icons=['house', 'speedometer', 'graph-up'],
+    orientation='horizontal'
 )
 
+# ================= LOAD MODELS =================
+model = joblib.load('car_model.joblib')
+fuelmod = pickle.load(open('fuel.pkl', 'rb'))
+ownmod = pickle.load(open('own.pkl', 'rb'))
+transmod = pickle.load(open('trans.pkl', 'rb'))
 
-   st.markdown("""
-## 📘 About
+# ================= HOME =================
+if menu == 'Home':
+    st.title('𝗩𝗘𝗛𝗜𝗖𝗟𝗘 𝗣𝗥𝗜𝗖𝗘 𝗘𝗦𝗧𝗜𝗠𝗔𝗧𝗢𝗥')
+    st.image(
+        'https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg',
+        use_container_width=True
+    )
 
-This **Car Price Prediction** application uses **Machine Learning** to estimate the resale value of a car based on key features such as car age, fuel type, transmission, kilometers driven, seller type, and owner count.
+    st.subheader("Get an instant ML-based estimate of your car’s resale value.")
 
-The model is trained on historical car sales data and is designed to provide quick, data-driven price estimates to help users make informed decisions.
-               
+    st.markdown("""
+### 📘 About
+This app predicts **used car prices** using a Machine Learning model trained on historical data.
 
+### 📊 Factors
+- Car age  
+- Present price  
+- Kilometers driven  
+- Fuel type  
+- Transmission  
+- Owner count  
+
+⚠️ Predictions are valid **only within training data limits**.
 """)
-   st.markdown("""
-### 📊 Factors affecting price
-- Newer cars tend to have higher resale value  
-- Lower mileage increases price  
-- Fuel type and transmission impact demand  
-- Fewer owners usually increase value
-""")
-   
-   st.markdown("""
-### 👥 Who can use this?
-- Individuals planning to sell a used car  
-- Buyers evaluating a fair market price  
-- Learners exploring real-world ML applications
-""")
-   
-   st.subheader("""⚠️ Important Note
-Predictions are reliable only for inputs that fall within the range of the training data. Extreme or unrealistic values may produce inaccurate results.""")
 
+# ================= PREDICTION =================
+elif menu == 'Prediction':
 
+    st.subheader("Enter Car Details")
 
-elif menu=='Prediction':
-    # st.subheader('ō͡≡o ✇⛟ ⚡︎⏲')
-    i1=st.number_input('𝗖𝗔𝗥 𝗔𝗚𝗘 ⏳',min_value=1,max_value=20,value=2)
-    i2=st.number_input('𝗣𝗥𝗘𝗦𝗘𝗡𝗧 𝗣𝗥𝗜𝗖𝗘 💰',min_value=0.0,max_value=25.00,value=5.0)
-    i3= st.number_input('𝗞𝗠𝗦 𝗗𝗥𝗜𝗩𝗘𝗡 📏',min_value=0,value=5000)
+    car_age = st.number_input('𝗖𝗔𝗥 𝗔𝗚𝗘 ⏳', 1, 20, 2)
+    present_price = st.number_input('𝗣𝗥𝗘𝗦𝗘𝗡𝗧 𝗣𝗥𝗜𝗖𝗘 (₹ Lakhs) 💰', 0.0, 25.0, 5.0)
+    kms_driven = st.number_input('𝗞𝗠𝗦 𝗗𝗥𝗜𝗩𝗘𝗡 📏', 0, 500000, 5000)
 
-    fuel= st.selectbox("𝗙𝗨𝗘𝗟 ⛽",fuelmod.classes_)
-    fuell=fuelmod.transform([fuel])[0]
+    fuel = st.selectbox('𝗙𝗨𝗘𝗟 ⛽', fuelmod.classes_)
+    fuel_enc = fuelmod.transform([fuel])[0]
 
-    own= st.selectbox("𝗢𝗪𝗡𝗘𝗥 𝗖𝗢𝗨𝗡𝗧 🧑‍💼",ownmod.classes_)
-    # ownn=own.transform([own])[0]
+    owner = st.selectbox('𝗢𝗪𝗡𝗘𝗥 𝗖𝗢𝗨𝗡𝗧 🧑‍💼', ownmod.classes_)
+    owner_enc = ownmod.transform([owner])[0]
 
-    trans = st.selectbox("𝗧𝗥𝗔𝗡𝗦𝗠𝗜𝗦𝗦𝗜𝗢𝗡 ⚙️",transmod.classes_)
-    transs=transmod.transform([trans])[0]
+    trans = st.selectbox('𝗧𝗥𝗔𝗡𝗦𝗠𝗜𝗦𝗦𝗜𝗢𝗡 ⚙️', transmod.classes_)
+    trans_enc = transmod.transform([trans])[0]
 
+    # 🔴 MUST MATCH TRAINING FEATURE ORDER
+    model_input = [
+        present_price,   # Present_Price
+        kms_driven,      # Kms_Driven
+        owner_enc,       # Owner
+        fuel_enc,        # Fuel
+        trans_enc,       # Transmission
+        car_age          # Car_Age
+    ]
 
+    st.write("🔍 Model Input:", model_input)
 
-    st.session_state.pred=[i1,i2,i3,fuell,own,transs]
+    if st.button('Predict Price'):
+        prediction = model.predict([model_input])[0]
+        st.success(f"💰 Estimated Resale Price: ₹ {prediction:.2f} Lakhs")
 
-
-    btn1= st.button('Submit')
-    if btn1:
-     res = model.predict([st.session_state.pred])
-     st.write(res)
-     st.success('Done')
-
+# ================= ANALYSIS =================
 else:
     st.title('Analysis')
+    st.info('Add charts, feature importance, or dataset insights here.')
