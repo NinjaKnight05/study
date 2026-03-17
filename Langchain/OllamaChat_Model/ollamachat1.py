@@ -1,8 +1,8 @@
 from langchain_community.chat_models import ChatOllama
 
-llm = ChatOllama(model='phi3:mini',temprature=1.5)
+llm = ChatOllama(model='phi3:mini',temprature=1)
 
-memory=[]
+# memory=[]
 
 while True:
     a=input("Enter Something : ")
